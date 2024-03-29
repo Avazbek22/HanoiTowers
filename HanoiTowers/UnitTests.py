@@ -1,5 +1,7 @@
+# - * - coding: utf-8 - * -
+
 import unittest
-import tkinter as tk
+import tkinter as tk 
 from HanoiTowers import TowerOfHanoi
 
 class TestTowerOfHanoi(unittest.TestCase):
@@ -12,20 +14,41 @@ class TestTowerOfHanoi(unittest.TestCase):
         self.root.destroy()
 
     def test_initial_state(self):
+        # Проверка начального состояния игры.
         self.assertEqual(self.hanoi_game.tower_a, [4, 3, 2, 1])
         self.assertEqual(self.hanoi_game.tower_b, [])
         self.assertEqual(self.hanoi_game.tower_c, [])
 
     def test_move_disk(self):
+        # Проверка перемещения одного диска.
         self.hanoi_game.move_disk(self.hanoi_game.tower_a, self.hanoi_game.tower_b)
         self.assertEqual(self.hanoi_game.tower_a, [4, 3, 2])
         self.assertEqual(self.hanoi_game.tower_b, [1])
 
     def test_hanoi_algorithm(self):
+        # Проверка правильности работы алгоритма Ханой.
         self.hanoi_game.hanoi(self.num_disks, self.hanoi_game.tower_a, self.hanoi_game.tower_c, self.hanoi_game.tower_b)
         self.assertEqual(self.hanoi_game.tower_a, [])
         self.assertEqual(self.hanoi_game.tower_b, [])
         self.assertEqual(self.hanoi_game.tower_c, [4, 3, 2, 1])
+
+    def test_move_disks_half_full(self):
+        # Проверка перемещения дисков, когда половина башен заполнена.
+        self.hanoi_game.tower_a = [4, 3]
+        self.hanoi_game.tower_b = [1]
+        self.hanoi_game.move_disk(self.hanoi_game.tower_a, self.hanoi_game.tower_b)
+        self.assertEqual(self.hanoi_game.tower_a, [4])
+        self.assertEqual(self.hanoi_game.tower_b, [3, 1])
+
+    def test_hanoi_algorithm_with_multiple_towers(self):
+        # Проверка алгоритма Ханой для сценария с несколькими башнями.
+        self.hanoi_game.tower_a = [7, 6, 5, 4, 3, 2, 1]
+        self.hanoi_game.tower_b = []
+        self.hanoi_game.tower_c = []
+        self.hanoi_game.hanoi(self.num_disks, self.hanoi_game.tower_a, self.hanoi_game.tower_c, self.hanoi_game.tower_b)
+        self.assertEqual(self.hanoi_game.tower_a, [])
+        self.assertEqual(self.hanoi_game.tower_b, [])
+        self.assertEqual(self.hanoi_game.tower_c, [7, 6, 5, 4, 3, 2, 1])
 
 if __name__ == '__main__':
     unittest.main()

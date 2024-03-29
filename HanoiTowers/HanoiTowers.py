@@ -50,6 +50,7 @@ class TowerOfHanoi:
         if n == 1:
             self.move_disk(source, target)
         else:
+            # Рекурсивный вызов для перемещения дисков
             self.hanoi(n - 1, source, auxiliary, target)
             self.move_disk(source, target)
             self.hanoi(n - 1, auxiliary, target, source)
@@ -66,4 +67,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
