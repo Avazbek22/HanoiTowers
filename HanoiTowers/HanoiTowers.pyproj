@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>29887f6e-61cc-494a-8c62-2fc935461b35</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>UnitTests.py</StartupFile>
+    <StartupFile>HanoiTowers.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
